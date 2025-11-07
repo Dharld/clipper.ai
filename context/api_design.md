@@ -3,9 +3,9 @@ Simple descriptions + **Data In / Data Out** with tiny JSON.
 
 ---
 
-# ClipForge API (MVP)
+# Clipper API (MVP)
 
-Base URL: `https://api.clipforge.app`
+Base URL: `https://api.clipper.app`
 
 Auth: Bearer token (future). For MVP you can skip.
 

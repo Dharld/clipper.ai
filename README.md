@@ -1,6 +1,6 @@
-ClipForge — Backend scaffold
+Clipper — Backend scaffold
 
-This repository contains a minimal scaffold for the ClipForge backend using:
+This repository contains a minimal scaffold for the Clipper backend using:
 
 - FastAPI
 - SQLAlchemy + Alembic (migrations scaffolded)

@@ -1,7 +1,7 @@
-# 🎧 ClipForge — Smart Podcast Clip Generator
+# 🎧 Clipper — Smart Podcast Clip Generator
 
 ## Overview
-ClipForge is a web app that helps podcasters turn long episodes into short, viral clips ready for TikTok, YouTube Shorts, and Instagram Reels.
+Clipper is a web app that helps podcasters turn long episodes into short, viral clips ready for TikTok, YouTube Shorts, and Instagram Reels.
 
 A user uploads a full podcast video (or audio), and the app automatically detects interesting moments, cuts them into short clips, and lets the creator download or refine them.
 

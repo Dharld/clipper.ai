@@ -2,7 +2,7 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg2://clipforge:clipforge@localhost:5432/clipforge")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg2://clipper:clipper@localhost:5432/clipper")
 
 engine = create_engine(DATABASE_URL, future=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)

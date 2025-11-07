@@ -3,9 +3,9 @@ services:
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_USER: clipforge
-      POSTGRES_PASSWORD: clipforge
-      POSTGRES_DB: clipforge
+      POSTGRES_USER: clipper
+      POSTGRES_PASSWORD: clipper
+      POSTGRES_DB: clipper
     ports:
       - 5432:5432
     volumes:
@@ -35,7 +35,7 @@ services:
       - redis
       - minio
     environment:
-      DATABASE_URL: postgresql+psycopg2://clipforge:clipforge@postgres:5432/clipforge
+      DATABASE_URL: postgresql+psycopg2://clipper:clipper@postgres:5432/clipper
       REDIS_URL: redis://redis:6379/0
       MINIO_ENDPOINT: http://minio:9000
       MINIO_ACCESS_KEY: minioadmin
@@ -52,7 +52,7 @@ services:
       - redis
     command: dramatiq app.tasks --processes 1
     environment:
-      DATABASE_URL: postgresql+psycopg2://clipforge:clipforge@postgres:5432/clipforge
+      DATABASE_URL: postgresql+psycopg2://clipper:clipper@postgres:5432/clipper
       REDIS_URL: redis://redis:6379/0
     volumes:
       - ./app:/app/app
