@@ -1,0 +1,11 @@
+fastapi==0.100.0
+uvicorn[standard]==0.22.0
+SQLAlchemy==2.0.22
+alembic==1.12.0
+psycopg2-binary==2.9.6
+dramatiq==1.15.0
+redis==4.6.0
+boto3==1.28.0
+python-dotenv==1.0.0
+httpx==0.24.0
+openai==1.0.0

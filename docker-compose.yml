@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: clipforge
+      POSTGRES_PASSWORD: clipforge
+      POSTGRES_DB: clipforge
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - 6379:6379
+
+  minio:
+    image: quay.io/minio/minio
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - miniodata:/data
+
+  api:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+      - minio
+    environment:
+      DATABASE_URL: postgresql+psycopg2://clipforge:clipforge@postgres:5432/clipforge
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app/app
+
+  worker:
+    build: .
+    depends_on:
+      - api
+      - redis
+    command: dramatiq app.tasks --processes 1
+    environment:
+      DATABASE_URL: postgresql+psycopg2://clipforge:clipforge@postgres:5432/clipforge
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - ./app:/app/app
+
+volumes:
+  pgdata:
+  miniodata:
