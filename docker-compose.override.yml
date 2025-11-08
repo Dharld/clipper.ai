@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm ci || npm install && npm run dev -- --host 0.0.0.0"
+    environment:
+      - CHOKIDAR_USEPOLLING=1
+
+  # Development convenience: pass through OpenAI key and optional prompt to worker
+  # so you can enable Whisper-based transcription without editing compose files.
+  worker:
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TRANSCRIPTION_PROMPT=${TRANSCRIPTION_PROMPT}
