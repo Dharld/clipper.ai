@@ -57,6 +57,18 @@ services:
     volumes:
       - ./app:/app/app
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "5173:5173"
+    # For a production/static build you can replace the Dockerfile with a multi-stage build
+    # or serve the built files with nginx. This config builds the frontend image and
+    # runs the dev server (Vite) bound to 0.0.0.0 so it's reachable from the host.
+
 volumes:
   pgdata:
   miniodata:
